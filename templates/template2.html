@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+
+        .navbar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .navbar .navbox {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .navbar .navbox li a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .navbar .navbox li a:hover {
+            color: #667eea;
+        }
+
+        .intro {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .desp {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .desp h1 {
+            font-size: 54px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .desp h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .desp p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .imgbox {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imgbox img {
+            height: 350px;
+            width: 350px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .about {
+            background: white;
+            padding: 80px 40px;
+            margin: 40px 0;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about h1 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+
+        .about p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 800px;
+            color: #555;
+        }
+
+        .projects {
+            padding: 80px 40px;
+            color: white;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects h1 {
+            font-size: 42px;
+            margin-bottom: 50px;
+        }
+
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .intro {
+                flex-direction: column;
+                padding: 40px 20px;
+            }
+
+            .desp {
+                padding-right: 0;
+            }
+
+            .desp h1 {
+                font-size: 36px;
+            }
+
+            .desp h2 {
+                font-size: 24px;
+            }
+
+            .imgbox {
+                margin-top: 30px;
+            }
+
+            .imgbox img {
+                height: 250px;
+                width: 250px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .navbar .navbox {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">{{name}}</div>
+            <ul class="navbox">
+                <li><a href="#About">About</a></li>
+                <li><a href="#Projects">Projects</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="intro">
+        <div class="desp">
+            <h1>Hi, I'm {{name}}</h1>
+            <h2>{{role}}</h2>
+            <p>{{bio}}</p>
+            <div class="contact-info" id="Contact">
+                <p><strong>📧 Email:</strong> {{email}}</p>
+                <p><strong>📱 Phone:</strong> {{phno}}</p>
+            </div>
+        </div>
+        <div class="imgbox">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea'/%3E%3Cstop offset='100%25' style='stop-color:%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad)' width='200' height='200' rx='20'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='32' font-weight='bold' fill='white'%3E{{name}}%3C/text%3E%3C/svg%3E"
+                alt="Profile">
+        </div>
+    </div>
+
+    <div class="about" id="About">
+        <div class="about-container">
+            <h1>About Me</h1>
+            <p>{{bio}}</p>
+        </div>
+    </div>
+
+    <div class="projects" id="Projects">
+        <div class="projects-container">
+            <h1>Projects</h1>
+            <div class="projects-list">
+                {{projects}}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 {{name}}. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

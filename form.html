@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-container h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .form-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input,
+        textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .error {
+            color: #e74c3c;
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-container h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Create Your Portfolio</h1>
+        <p>Fill in your details to generate a professional portfolio</p>
+
+        <div class="error" id="error"></div>
+
+        <form id="userform">
+            <div class="form-group">
+                <label for="name">Your Name *</label>
+                <input type="text" id="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Your Role/Title *</label>
+                <input type="text" id="role" placeholder="Full Stack Developer" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phno">Phone Number *</label>
+                <input type="tel" id="phno" placeholder="1234567890" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bio">About You *</label>
+                <textarea id="bio" placeholder="Write a brief bio about yourself..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="projects">Projects (comma separated) *</label>
+                <input type="text" id="projects" placeholder="Project 1, Project 2, Project 3" required>
+            </div>
+
+            <div class="loading" id="loading">Generating your portfolio...</div>
+            <button type="submit">Generate Portfolio</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("userform").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const errorDiv = document.getElementById("error");
+            const loadingDiv = document.getElementById("loading");
+
+            errorDiv.style.display = "none";
+            loadingDiv.style.display = "block";
+
+            try {
+                const userData = {
+                    name: document.getElementById("name").value.trim(),
+                    role: document.getElementById("role").value.trim(),
+                    bio: document.getElementById("bio").value.trim(),
+                    phno: document.getElementById("phno").value.trim(),
+                    photo: "avatar",
+                    email: document.getElementById("email").value.trim(),
+                    projects: document.getElementById("projects").value.split(",").map(p => p.trim()),
+                };
+
+                // Validate data
+                if (!userData.name || !userData.role || !userData.email || !userData.bio) {
+                    throw new Error("Please fill in all required fields");
+                }
+
+                const response = await fetch("http://localhost:5000/api/generate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(userData),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to generate portfolio. Server error.");
+                }
+
+                const portfolioHtml = await response.text();
+
+                // Store User ID from response headers
+                const userId = response.headers.get("user-id");
+                if (userId) {
+                    localStorage.setItem("userId", userId);
+                }
+
+                // Display portfolio
+                document.body.innerHTML = portfolioHtml;
+
+                // Add regenerate button
+                const regenerateBtn = document.createElement("button");
+                regenerateBtn.innerText = "🔄 Regenerate Template";
+                regenerateBtn.style.cssText = "position: fixed; bottom: 20px; right: 20px; padding: 12px 20px; background: #667eea; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);";
+                regenerateBtn.onclick = regeneratePortfolio;
+                document.body.appendChild(regenerateBtn);
+
+            } catch (error) {
+                loadingDiv.style.display = "none";
+                errorDiv.textContent = error.message;
+                errorDiv.style.display = "block";
+                console.error("Error:", error);
+            }
+        });
+
+        async function regeneratePortfolio() {
+            const userId = localStorage.getItem("userId");
+            if (!userId) {
+                alert("No previous portfolio found! Please create a new one.");
+                window.location.href = "form.html";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/api/regenerate/${userId}`);
+                if (!response.ok) {
+                    throw new Error("Failed to regenerate portfolio");
+                }
+
+                const newPortfolioHtml = await response.text();
+                document.body.innerHTML = newPortfolioHtml;
+
+                // Add regenerate button again
+                const regenerateBtn = document.createElement("button");
+                regenerateBtn.innerText = "🔄 Regenerate Template";
+                regenerateBtn.style.cssText = "position: fixed; bottom: 20px; right: 20px; padding: 12px 20px; background: #667eea; color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);";
+                regenerateBtn.onclick = regeneratePortfolio;
+                document.body.appendChild(regenerateBtn);
+
+            } catch (error) {
+                alert("Error regenerating portfolio: " + error.message);
+                console.error("Error:", error);
+            }
+        }
+    </script>
+</body>
+
+</html>

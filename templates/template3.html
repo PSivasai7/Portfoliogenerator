@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0f3460 0%, #16213e 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #e94560;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .navbox {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+
+        .navbox li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .navbox li a:hover {
+            color: #e94560;
+        }
+
+        .intro {
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 60px;
+        }
+
+        .desp {
+            flex: 1;
+        }
+
+        .desp h1 {
+            font-size: 58px;
+            margin-bottom: 20px;
+            color: #e94560;
+            font-weight: 700;
+        }
+
+        .desp h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 400;
+        }
+
+        .desp p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background: #ff5a7e;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #404040;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            color: #b8b8b8;
+        }
+
+        .imgbox {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .imgbox img {
+            height: 400px;
+            width: 400px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 3px solid #e94560;
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+        }
+
+        .about {
+            background: #16213e;
+            padding: 100px 40px;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about h1 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #e94560;
+        }
+
+        .about p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 800px;
+            color: #b8b8b8;
+        }
+
+        .projects {
+            padding: 100px 40px;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects h1 {
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #e94560;
+        }
+
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #e94560;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.2);
+        }
+
+        .project-card h3 {
+            color: #e94560;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .project-card p {
+            color: #b8b8b8;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #0f3460;
+            color: #b8b8b8;
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #404040;
+        }
+
+        @media (max-width: 768px) {
+            .intro {
+                flex-direction: column;
+                padding: 40px 20px;
+                min-height: auto;
+            }
+
+            .desp h1 {
+                font-size: 36px;
+            }
+
+            .desp h2 {
+                font-size: 24px;
+            }
+
+            .imgbox {
+                margin-top: 30px;
+            }
+
+            .imgbox img {
+                height: 300px;
+                width: 300px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .navbox {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">{{name}}</div>
+            <ul class="navbox">
+                <li><a href="#About">About</a></li>
+                <li><a href="#Projects">Projects</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="intro">
+        <div class="desp">
+            <h1>Hey, {{name}}</h1>
+            <h2>{{role}}</h2>
+            <p>{{bio}}</p>
+            <a href="#Contact" class="cta-button">Get in Touch</a>
+            <div class="contact-info" id="Contact">
+                <p><strong>📧 Email:</strong> {{email}}</p>
+                <p><strong>📱 Phone:</strong> {{phno}}</p>
+            </div>
+        </div>
+        <div class="imgbox">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23e94560' width='200' height='200'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='32' font-weight='bold' fill='white'%3E{{name}}%3C/text%3E%3C/svg%3E"
+                alt="Profile">
+        </div>
+    </div>
+
+    <div class="about" id="About">
+        <div class="about-container">
+            <h1>About Me</h1>
+            <p>{{bio}}</p>
+        </div>
+    </div>
+
+    <div class="projects" id="Projects">
+        <div class="projects-container">
+            <h1>Featured Projects</h1>
+            <div class="projects-list">
+                {{projects}}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 {{name}}. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

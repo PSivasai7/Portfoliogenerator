@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+package-lock.json
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Documentation files to exclude from repo
+DOCUMENTATION_INDEX.md
+FINAL_SUMMARY.md
+DEVELOPER_GUIDE.md
+DEPLOYMENT_CHECKLIST.md
+COMPLETION_CERTIFICATE.md
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+temp/
