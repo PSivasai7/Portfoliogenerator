@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# Portfolio Generator - End-to-End Project
+
+# Portfolio Generator -
 
 A full-stack web application that allows users to create professional portfolios with multiple design templates. Users can fill in their information and generate a personalized portfolio that can be regenerated with different templates.
 
@@ -295,7 +295,3 @@ For issues or questions, check the troubleshooting section or review the code co
 
 **Project Status**: ✅ Complete and Ready for Use
 
-Happy Portfolio Creating! 🎉
-=======
-# Portfoliogenerator
->>>>>>> 132bcf6fb16bdb3750bf83959d71b0fedf78205d
