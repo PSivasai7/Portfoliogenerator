@@ -80,14 +80,11 @@ Dependencies include:
 ### Step 3: Configure Environment Variables
 Edit `.env` file and set:
 ```
-MONGO_URI=mongodb://localhost:27017/portfolio
-PORT=5000
+
 ```
 
 For MongoDB Atlas (cloud):
 ```
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
-PORT=5000
 ```
 
 ### Step 4: Start MongoDB
